@@ -4,6 +4,7 @@ const connectDB = require("./dbConnect.js");
 
 dotenv.config();
 
+const errorMiddleware = require("./middleware/error");
 //Import routes
 const productRoute = require("./routes/productRoutes.js");
 
@@ -21,3 +22,5 @@ connectDB();
 app.listen(PORT, () => {
   console.log(`Server running on port: ${PORT}`);
 });
+
+app.use(errorMiddleware);
