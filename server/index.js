@@ -1,5 +1,7 @@
 const express = require("express");
 const dotenv = require("dotenv");
+const cookieParser = require("cookie-parser");
+
 const connectDB = require("./dbConnect.js");
 
 dotenv.config();
@@ -26,3 +28,4 @@ app.listen(PORT, () => {
 });
 
 app.use(errorMiddleware);
+app.use(cookieParser);
