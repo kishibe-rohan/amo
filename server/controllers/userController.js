@@ -43,7 +43,7 @@ exports.loginUser = catchAsyncErrors(async (req, res, next) => {
 });
 
 //Logout User
-exports.logout = catchAsyncErros(async (req, res, next) => {
+exports.logout = catchAsyncErrors(async (req, res, next) => {
   res.cookie("token", null, {
     expires: new Date(Date.now()),
     httpOnly: true,
@@ -56,7 +56,7 @@ exports.logout = catchAsyncErros(async (req, res, next) => {
 });
 
 //Forgot Password? Send Email
-exports.forgotPassword = catchAsyncErros(async (req, res, next) => {
+exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
   const user = await User.findOne({ email: req.body.email });
 
   if (!user) {
@@ -126,7 +126,7 @@ exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
 });
 
 // Get User Details
-exports.getuserDetails = catchAsyncErrors(async (req, res, next) => {
+exports.getUserDetails = catchAsyncErrors(async (req, res, next) => {
   const user = await User.findById(req.user.id);
 
   res.status(200).json({
@@ -136,7 +136,7 @@ exports.getuserDetails = catchAsyncErrors(async (req, res, next) => {
 });
 
 // Update User Profile
-exports.updateProfile = catchAsyncErros(async (req, res, next) => {
+exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
   const newUserData = {
     name: req.body.name,
     email: req.body.email,

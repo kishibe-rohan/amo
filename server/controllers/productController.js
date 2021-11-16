@@ -53,3 +53,26 @@ exports.getProductDetails = catchAsyncErrors(async (req, res, next) => {
     product,
   });
 });
+
+//Add Product
+exports.addProduct = catchAsyncErrors(async (req, res, next) => {
+  const { name, description, price, rating, category } = req.body;
+  const product = await Product.create({
+    name,
+    description,
+    price,
+    rating,
+    category,
+    images: [
+      {
+        public_id: "Sample ID",
+        url: "productPictureURL",
+      },
+    ],
+  });
+
+  res.status(201).json({
+    success: true,
+    product,
+  });
+});

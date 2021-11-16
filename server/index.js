@@ -28,4 +28,4 @@ app.listen(PORT, () => {
 });
 
 app.use(errorMiddleware);
-app.use(cookieParser);
+app.use(cookieParser());
