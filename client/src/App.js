@@ -8,6 +8,7 @@ import Header from "./components/layout/Header/Header.js";
 import Footer from "./components/layout/Footer/Footer";
 
 import Home from "./components/Home/Home";
+import SingleProduct from "./components/Product/SingleProduct";
 
 function App() {
   useEffect(() => {
@@ -22,6 +23,7 @@ function App() {
     <Router>
       <Header />
       <Route exact path="/" component={Home} />
+      <Route exact path="/product/:id" component={SingleProduct} />
       <Footer />
     </Router>
   );
