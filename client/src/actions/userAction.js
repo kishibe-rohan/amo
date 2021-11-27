@@ -89,3 +89,8 @@ export const logout = () => async (dispatch) => {
     dispatch({ type: LOGOUT_FAIL, payload: error.response.data.message });
   }
 };
+
+//Clear All Errors
+export const clearErrors = () => async (dispatch) => {
+  dispatch({ type: "CLEAR_ERRORS" });
+};
