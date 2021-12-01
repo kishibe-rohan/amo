@@ -5,6 +5,11 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import {
   productsReducer,
   productDetailsReducer,
+  newProdcutReducer,
+  newReviewReducer,
+  productReducer,
+  productReviewsReducer,
+  reviewReducer,
 } from "./reducers/productReducer";
 
 import {
@@ -17,12 +22,17 @@ import {
 
 const reducer = combineReducers({
   products: productsReducer,
-  product: productDetailsReducer,
+  productDetails: productDetailsReducer,
   user: userReducer,
   profile: profileReducer,
   userDetails: userDetailsReducer,
   forgotPassword: forgotPasswordReducer,
-  users: allUsersReducer,
+  allUsers: allUsersReducer,
+  newReview: newReviewReducer,
+  newProduct: newProdcutReducer,
+  product: productReducer,
+  productReviews: productReviewsReducer,
+  review: reviewReducer,
 });
 
 let initialState = {};
