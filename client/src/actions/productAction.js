@@ -6,6 +6,9 @@ import {
   ADMIN_PRODUCT_REQUEST,
   ADMIN_PRODUCT_SUCCESS,
   ADMIN_PRODUCT_FAIL,
+  FEAT_PRODUCT_FAIL,
+  FEAT_PRODUCT_REQUEST,
+  FEAT_PRODUCT_SUCCESS,
   NEW_PRODUCT_REQUEST,
   NEW_PRODUCT_SUCCESS,
   NEW_PRODUCT_FAIL,
@@ -38,6 +41,9 @@ export const getProducts =
       dispatch({ type: ALL_PRODUCT_REQUEST });
 
       let link = `/api/v1/products`;
+      if (category) {
+        link = `/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&ratings[gte]=${ratings}`;
+      }
 
       const { data } = await axios.get(link);
 
@@ -69,6 +75,27 @@ export const getAdminProducts = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: ADMIN_PRODUCT_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};
+
+//Get Featured Products
+export const getFeaturedProducts = () => async (dispatch) => {
+  try {
+    dispatch({
+      type: FEAT_PRODUCT_REQUEST,
+    });
+
+    const { data } = await axios.get("/api/v1/featproducts");
+
+    dispatch({
+      type: FEAT_PRODUCT_SUCCESS,
+      payload: data.featuredProducts,
+    });
+  } catch (error) {
+    dispatch({
+      type: FEAT_PRODUCT_FAIL,
       payload: error.response.data.message,
     });
   }

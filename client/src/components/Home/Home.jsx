@@ -2,9 +2,11 @@ import React,{useEffect} from 'react'
 import { CgMouse } from "react-icons/all";
 
 import ProductCard from './ProductCard';
-import logo from '../../images/logo.png'
+import Header from '../layout/Header/Header';
+import Footer from '../layout/Footer/Footer';
 import "./Home.css";
 import MetaData from '../layout/MetaData';
+
 import { getProducts } from '../../actions/productAction'
 import {useSelector,useDispatch} from 'react-redux'
 
@@ -26,16 +28,7 @@ const Home = () => {
   return (
     <>
     <MetaData title="amo | Crafted With Love" />
-      <div className="banner">
-          <img src={logo} alt="amo" />
-          <p>Welcome to your one stop fashion destination</p>
-
-          <a href="#container">
-              <button>
-                  Explore! <CgMouse/>
-              </button>
-          </a>
-      </div>
+      <Header/>
 
       <h2 className="home-header">Featured Fashion</h2>
       <div className="container" id="container">
@@ -43,6 +36,9 @@ const Home = () => {
              <ProductCard product={product}/>
          ))}
       </div>
+
+      <Footer/>
+      
     </>
   )
 }

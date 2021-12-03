@@ -41,6 +41,10 @@ const productSchema = mongoose.Schema({
     maxLength: [4, "Stock cannot exceed 4 figures"],
     default: 1,
   },
+  isFeatured:{
+    type: Boolean,
+    default: false
+  },
   numReviews: {
     type: Number,
     default: 0,

@@ -143,7 +143,7 @@ export const updateProfile = (userData) => async (dispatch) => {
 };
 
 //Update Password
-export const updatePassword = (passswords) => async (dispatch) => {
+export const updatePassword = (passwords) => async (dispatch) => {
   try {
     dispatch({
       type: UPDATE_PASSWORD_REQUEST,
@@ -298,5 +298,5 @@ export const deleteUser = (id) => async (dispatch) => {
 
 //Clear All Errors
 export const clearErrors = () => async (dispatch) => {
-  dispatch({ type: "CLEAR_ERRORS" });
+  dispatch({ type: CLEAR_ERRORS });
 };

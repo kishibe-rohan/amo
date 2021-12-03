@@ -5,29 +5,26 @@ const ApiFeatures = require("../utils/apiFeatures");
 
 // Get Products(Filter)
 exports.getProducts = catchAsyncErrors(async (req, res, next) => {
-  const resultsPerPage = 6;
+  const resultsPerPage = 8;
   const productsCount = await Product.countDocuments();
 
-  const apiFeature = new ApiFeatures(
-    Product.find(),
-    req.query.search().filter()
-  );
-
-  let products = await apiFeature.query;
+  const apiFeature = new ApiFeatures(Product.find(), req.query)
+    .search()
+    .filter();
+  let products = await apiFeature.query.clone();
 
   let filteredProductsCount = products.length;
   apiFeature.pagination(resultsPerPage);
 
   products = await apiFeature.query;
 
-  res.status(200),
-    json({
-      success: true,
-      products,
-      productsCount,
-      resultsPerPage,
-      filteredProductsCount,
-    });
+  res.status(200).json({
+    success: true,
+    products,
+    productsCount,
+    resultsPerPage,
+    filteredProductsCount,
+  });
 });
 
 //Get All Products (Admin)
@@ -37,6 +34,16 @@ exports.getAllProducts = catchAsyncErrors(async (req, res, next) => {
   res.status(200).json({
     success: true,
     products,
+  });
+});
+
+//Get Featured Products
+exports.getFeaturedProducts = catchAsyncErrors(async (req, res, next) => {
+  const featuredProducts = await Product.find({ isFeatured: true });
+
+  res.status(200).json({
+    success: true,
+    featuredProducts,
   });
 });
 
