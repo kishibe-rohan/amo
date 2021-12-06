@@ -3,11 +3,12 @@ import { CgMouse } from "react-icons/all";
 
 import ProductCard from './ProductCard';
 import Header from '../layout/Header/Header';
+import Slider from '../layout/Slider'
 import Footer from '../layout/Footer/Footer';
 import "./Home.css";
 import MetaData from '../layout/MetaData';
 
-import { getProducts } from '../../actions/productAction'
+import { getProducts,getFeaturedProducts } from '../../actions/productAction'
 import {useSelector,useDispatch} from 'react-redux'
 
 const product = {
@@ -20,15 +21,18 @@ const Home = () => {
 
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(getProducts())
+        dispatch(getProducts());
+        dispatch(getFeaturedProducts());
     },[dispatch])
 
-    const {loading,error,products} = useSelector((state) => state.products)
+    const {loading,error,products,featuredProducts} = useSelector((state) => state.products)
+   
 
   return (
     <>
     <MetaData title="amo | Crafted With Love" />
       <Header/>
+      <Slider sliderItems = {featuredProducts} />
 
       <h2 className="home-header">Featured Fashion</h2>
       <div className="container" id="container">

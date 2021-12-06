@@ -10,6 +10,7 @@ const errorMiddleware = require("./middleware/error");
 //Import routes
 const productRoute = require("./routes/productRoutes.js");
 const userRoute = require("./routes/userRoutes.js");
+const categoryRoute = require("./routes/categoryRoutes.js");
 
 const PORT = process.env.PORT || 4000;
 const app = express();
@@ -18,6 +19,7 @@ app.use(express.json());
 //Set up routes
 app.use("/api/v1", productRoute);
 app.use("/api/v1", userRoute);
+app.use("/api/v1", categoryRoute);
 
 //Connect to database
 connectDB();

@@ -46,6 +46,69 @@ const Item = styled.div`
  height:100vh;
  display:flex;
  align-itmes:center;
- background-color:#${(props) => props.bg};
+ background-color: pink;
 `
 
+const ImgContainer = styled.div` 
+height:100%;
+flex:1;
+`
+
+const Image = styled.img`
+height:100%;
+`
+
+const InfoContainer = styled.div` 
+flex:1;
+padding:50px;
+`
+const Title = styled.h1` 
+font-size:70px;
+`
+
+const Desc = styled.div` 
+margin:50px 0px;
+font-size:20px;
+font-weight:500;
+letter-spacing:3px;
+`
+const Slider = ({sliderItems}) => {
+    const [itemIndex,setItemIndex] = useState(0);
+    const handleClick = (direction) => {
+        if(direction === "left")
+        {
+            setItemIndex(itemIndex > 0 ? itemIndex - 1 : sliderItems?.length - 1);
+        }
+        else
+        {
+            setItemIndex(itemIndex < 2 ? itemIndex + 1 : 0);
+        }
+    }
+
+    return (
+        <Container>
+          <Arrow direction="left" onClick={() => handleClick("left")}>
+                <ArrowLeftOutlined/>
+          </Arrow>
+          <Wrapper itemIndex = {itemIndex}>
+             {sliderItems.map((item) => (
+                 <Item key={item.id}>
+                     <ImgContainer>
+                     <Image src={item.images[0].url}/>
+                     </ImgContainer>
+                     <InfoContainer>
+                         <Title>{item.name}</Title>
+                         <Desc>{item.description}</Desc>
+                         
+                     </InfoContainer>
+                </Item>
+             ))}
+          </Wrapper>
+          <Arrow direction="right"  onClick={() => handleClick("right")}>
+          <ArrowRightOutlined/>
+          </Arrow>
+        </Container>
+      )
+}
+
+export default Slider;

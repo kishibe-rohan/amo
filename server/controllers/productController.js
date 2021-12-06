@@ -1,4 +1,5 @@
 const Product = require("../models/productModel");
+const Category = require("../models/categoryModel");
 const ErrorHandler = require("../utils/errorHandler");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const ApiFeatures = require("../utils/apiFeatures");
@@ -44,6 +45,20 @@ exports.getFeaturedProducts = catchAsyncErrors(async (req, res, next) => {
   res.status(200).json({
     success: true,
     featuredProducts,
+  });
+});
+
+//Fetch Products By Category
+exports.getProductsByCategory = catchAsyncErrors(async (req, res, next) => {
+  const category = req.query.category;
+
+  const products = await Product.find({
+    category: category,
+  });
+
+  res.status(200).json({
+    success: true,
+    products,
   });
 });
 
