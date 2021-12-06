@@ -2,6 +2,7 @@ import React,{useEffect} from 'react'
 import { CgMouse } from "react-icons/all";
 
 import ProductCard from './ProductCard';
+import Categories from '../Categories/Categories'
 import Header from '../layout/Header/Header';
 import Slider from '../layout/Slider'
 import Footer from '../layout/Footer/Footer';
@@ -9,6 +10,7 @@ import "./Home.css";
 import MetaData from '../layout/MetaData';
 
 import { getProducts,getFeaturedProducts } from '../../actions/productAction'
+import {getCategories} from '../../actions/categoryAction'
 import {useSelector,useDispatch} from 'react-redux'
 
 const product = {
@@ -23,17 +25,20 @@ const Home = () => {
     useEffect(() => {
         dispatch(getProducts());
         dispatch(getFeaturedProducts());
+        dispatch(getCategories());
+  
     },[dispatch])
 
     const {loading,error,products,featuredProducts} = useSelector((state) => state.products)
-   
+    const {categories} = useSelector((state) => state.categories);
+    categories.splice(2,2);
 
   return (
     <>
     <MetaData title="amo | Crafted With Love" />
       <Header/>
       <Slider sliderItems = {featuredProducts} />
-
+      <Categories categories={categories} />
       <h2 className="home-header">Featured Fashion</h2>
       <div className="container" id="container">
          {products && products.map(product => (

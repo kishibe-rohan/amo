@@ -4,7 +4,7 @@ const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 
 //Get All Categories
 exports.getCategories = catchAsyncErrors(async (req, res, next) => {
-  const categories = await Category.distinct("title");
+  const categories = await Category.find();
 
   res.status(200).json({
     success: true,
