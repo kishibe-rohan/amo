@@ -8,6 +8,9 @@ import {
   FEAT_PRODUCT_FAIL,
   FEAT_PRODUCT_REQUEST,
   FEAT_PRODUCT_SUCCESS,
+  GET_PRODUCTS_BY_CATEGORY_FAILURE,
+  GET_PRODUCTS_BY_CATEGORY_REQUEST,
+  GET_PRODUCTS_BY_CATEGORY_SUCCESS,
   NEW_PRODUCT_REQUEST,
   NEW_PRODUCT_SUCCESS,
   NEW_PRODUCT_FAIL,
@@ -44,6 +47,7 @@ export const productsReducer = (
   switch (action.type) {
     case ALL_PRODUCT_REQUEST:
     case ADMIN_PRODUCT_REQUEST:
+    case GET_PRODUCTS_BY_CATEGORY_REQUEST:
       return {
         loading: true,
         products: [],
@@ -78,9 +82,16 @@ export const productsReducer = (
         featuredProducts: action.payload,
       };
 
+    case GET_PRODUCTS_BY_CATEGORY_SUCCESS:
+      return {
+        loading: false,
+        products: action.payload,
+      };
+
     case ALL_PRODUCT_FAIL:
     case ADMIN_PRODUCT_FAIL:
     case FEAT_PRODUCT_FAIL:
+    case GET_PRODUCTS_BY_CATEGORY_FAILURE:
       return {
         loading: false,
         error: action.payload,

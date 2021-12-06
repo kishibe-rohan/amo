@@ -6,6 +6,9 @@ import {
   ADMIN_PRODUCT_REQUEST,
   ADMIN_PRODUCT_SUCCESS,
   ADMIN_PRODUCT_FAIL,
+  GET_PRODUCTS_BY_CATEGORY_FAILURE,
+  GET_PRODUCTS_BY_CATEGORY_REQUEST,
+  GET_PRODUCTS_BY_CATEGORY_SUCCESS,
   FEAT_PRODUCT_FAIL,
   FEAT_PRODUCT_REQUEST,
   FEAT_PRODUCT_SUCCESS,
@@ -58,6 +61,29 @@ export const getProducts =
       });
     }
   };
+
+//Get Products By Category
+export const getProductsByCategory = (category) => async (dispatch) => {
+  try {
+    dispatch({
+      type: GET_PRODUCTS_BY_CATEGORY_REQUEST,
+    });
+
+    const { data } = await axios.get(
+      `/api/v1/catproducts/?category=${category}`
+    );
+
+    dispatch({
+      type: GET_PRODUCTS_BY_CATEGORY_SUCCESS,
+      payload: data.categories,
+    });
+  } catch (error) {
+    dispatch({
+      type: GET_PRODUCTS_BY_CATEGORY_FAILURE,
+      payload: error.response.data.message,
+    });
+  }
+};
 
 //Get All Products
 export const getAdminProducts = () => async (dispatch) => {
