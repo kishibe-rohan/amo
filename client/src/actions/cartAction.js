@@ -21,7 +21,10 @@ export const AddItemsToCart = (id, quantity) => async (dispatch, getState) => {
     },
   });
 
-  localStorage.setItem("cartItems", JSON.stringify(getState().cart.cartItems));
+  localStorage.setItem(
+    "amoCartItems",
+    JSON.stringify(getState().cart.cartItems)
+  );
 };
 
 //Remove From Cart
@@ -31,7 +34,10 @@ export const removeItemsFromCart = (id) => async (dispatch, getState) => {
     payload: id,
   });
 
-  localStorage.setItem("cartItems", JSON.stringify(getState().cart.cartItems));
+  localStorage.setItem(
+    "amoCartItems",
+    JSON.stringify(getState().cart.cartItems)
+  );
 };
 
 //Save Shipping Info
