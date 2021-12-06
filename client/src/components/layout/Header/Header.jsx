@@ -18,7 +18,7 @@ display:flex;
 align-items:center;
 justify-content:space-between;
 padding:10px 20px;
-background-color:#C9048F;
+background-color:tomato;
 width:100%;
 ${mobile({padding:"10px 0px"})}
 `
