@@ -4,6 +4,7 @@ export default makeStyles((theme) => ({
   container: {
     width: "100vw",
     height: "100vh",
+    background: `linear-gradient(rgba(255,255,255,0.5),rgba(255,255,255,0.5)),url(${"https://images.pexels.com/photos/833052/pexels-photo-833052.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"}center)`,
     backgroundSize: "cover",
     display: "flex",
     alignItems: "center",
@@ -12,7 +13,7 @@ export default makeStyles((theme) => ({
 
   wrapper: {
     width: "50%",
-    padding: "20px",
+
     backgroundColor: "white",
   },
 
@@ -60,5 +61,31 @@ export default makeStyles((theme) => ({
     color: "#fff",
     height: 48,
     borderRadius: 2,
+  },
+  avatar: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  avatarImg: {
+    width: "3vmax",
+    borderRadius: "100%",
+  },
+  avatarInput: {
+    display: "flex",
+    padding: "0%",
+    "&:file-selector-button": {
+      cursor: "pointer",
+      width: "100%",
+      zIndex: "2",
+      height: "5vh",
+      border: "none",
+      margin: "0%",
+      font: "400 0.8vmax",
+      transition: "all 0.5s",
+      padding: "0 1vmax",
+      color: "rgba(0,0,0,0.623)",
+      backgroundColor: "rgb(255,255,255)",
+    },
   },
 }));

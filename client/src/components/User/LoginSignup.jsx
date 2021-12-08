@@ -32,6 +32,7 @@ const LoginSignup = ({history,location}) => {
 
     const handleLogin = (e) => {
       e.preventDefault();
+      console.log(loginEmail,loginPassword);
       dispatch(login(loginEmail,loginPassword))
     }
 
@@ -43,6 +44,8 @@ const LoginSignup = ({history,location}) => {
         myForm.set("email", email);
         myForm.set("password", password);
         myForm.set("avatar", avatar);
+
+        console.log(myForm);
         dispatch(register(myForm));
     }
 
@@ -100,12 +103,23 @@ const LoginSignup = ({history,location}) => {
           </Box>
           {
               status === 'login' ? <Box className={classes.login}>
-                  <TextField onChange = {(e) => handleChange(e)} name="email" label="Email" />
-                  <TextField onChange = {(e) => handleChange(e)} name="password" label="Password" type="password" />
-                  <Button onClick = {handleLogin}>Login</Button>
+                  <TextField  onChange={(e) => setLoginEmail(e.target.value)} label="Email" />
+                  <TextField onChange={(e) => setLoginPassword(e.target.value)} label="Password" type="password" />
+                  <Button onClick = {handleLogin}  className={classes.loginBtn}>Login</Button>
                   <Typography className={classes.text}>Not a member yet? Create An Account!</Typography>
                   <Button onClick={toggleStatus} className={classes.signupBtn}>Sign Up</Button>
               </Box> : <Box className={classes.login}>
+              <TextField onChange = {(e) => handleChange(e)} name="name" label="Username" />
+              <TextField onChange = {(e) => handleChange(e)} name="email" label="Email" />
+              <TextField onChange = {(e) => handleChange(e)} name="password" label="Password" type="password" />
+              <div className={classes.avatar}>
+                  <img src={avatarPreview} className={classes.avatarImg} alt="Avatar Preview"/>
+                  <input className={classes.avatarInput} type="file" name="avatar" accept="image/*" onChange={(e) => handleChange(e)} />
+              </div>
+              <Button onClick={handleSignup} className={classes.signupBtn}>Sign Up</Button>
+              <Typography className={classes.loginText}>Already have an account? Sign In!</Typography>
+              <Button onClick={toggleStatus} className={classes.loginBtn}>Login</Button>
+
               </Box>
           }
       </Box>
