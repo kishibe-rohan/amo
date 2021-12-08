@@ -11,6 +11,7 @@ import Shipping from "./components/Cart/Shipping";
 import OrderSuccess from "./components/Cart/OrderSuccess";
 import ConfirmOrder from "./components/Cart/ConfirmOrder";
 import Profile from "./components/User/Profile";
+import UpdateProfile from "./components/User/UpdateProfile";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
       <Route exact path="/success" component={OrderSuccess} />
       <Route exact path="/order/confirm" component={ConfirmOrder} />
       <Route exact path="/account" component={Profile} />
+      <Route exact path="/me/update" component={UpdateProfile} />
     </Router>
   );
 }
