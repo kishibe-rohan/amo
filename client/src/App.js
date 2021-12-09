@@ -12,6 +12,16 @@ import OrderSuccess from "./components/Cart/OrderSuccess";
 import ConfirmOrder from "./components/Cart/ConfirmOrder";
 import Profile from "./components/User/Profile";
 import UpdateProfile from "./components/User/UpdateProfile";
+import UpdatePassword from "./components/User/UpdatePassword";
+import Dashboard from "./components/Admin/Dashboard";
+import ProductList from "./components/Admin/ProductList";
+import AddProduct from "./components/Admin/AddProduct";
+import UpdateProduct from "./components/Admin/UpdateProduct";
+import OrderList from "./components/Admin/OrderList";
+import ProcessOrder from "./components/Admin/ProcessOrder";
+import UsersList from "./components/Admin/UsersList";
+import UpdateUser from "./components/Admin/UpdateUser";
+import ProductReviews from "./components/Admin/ProductReviews";
 
 function App() {
   return (
@@ -25,6 +35,16 @@ function App() {
       <Route exact path="/order/confirm" component={ConfirmOrder} />
       <Route exact path="/account" component={Profile} />
       <Route exact path="/me/update" component={UpdateProfile} />
+      <Route exact path="/password/update" component={UpdatePassword} />
+      <Route exact path="/admin/dashboard" component={Dashboard} />
+      <Route exact path="/admin/products" component={ProductList} />
+      <Route exact path="/admin/product" component={AddProduct} />
+      <Route exact path="/admin/product/:id" component={UpdateProduct} />
+      <Route exact path="/admin/orders" component={OrderList} />
+      <Route exact path="/admin/order/:id" component={ProcessOrder} />
+      <Route exact path="/admin/users" component={UsersList} />
+      <Route exact path="/admin/user/:id" component={UpdateUser} />
+      <Route exact path="/admin/reviews" component={ProductReviews} />
     </Router>
   );
 }
