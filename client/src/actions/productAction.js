@@ -178,7 +178,7 @@ export const createProduct = (productData) => async (dispatch) => {
 };
 
 //Update Product
-export const updateProudct = (id, productData) => async (dispatch) => {
+export const updateProduct = (id, productData) => async (dispatch) => {
   try {
     dispatch({
       type: UPDATE_PRODUCT_REQUEST,

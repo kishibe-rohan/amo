@@ -110,7 +110,7 @@ const columns = [
     renderCell:(params) => {
       return (
         <>
-        <Link to={`/amdin/product/${params.getValue(params.id,"id")}`}>
+        <Link to={`/admin/product/${params.getValue(params.id,"id")}`}>
           <Edit/>
         </Link>
         <Button onClick={() => deleteProductHandler(params.getValue(params.id,"id"))}>
