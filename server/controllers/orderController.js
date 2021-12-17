@@ -4,11 +4,11 @@ const ErrorHandler = require("../utils/errorHandler");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 
 // Create a new Order
-exports.newOrder = catchAsyncErros(async (req, res, next) => {
+exports.newOrder = catchAsyncErrors(async (req, res, next) => {
   const {
     shippingInfo,
     orderItems,
-    paymentInfro,
+    paymentInfo,
     itemsPrice,
     taxPrice,
     shippingPrice,
@@ -72,7 +72,7 @@ exports.getAllOrders = catchAsyncErrors(async (req, res, next) => {
     totalAmount += order.totalPrice;
   });
 
-  res.staus(200).json({
+  res.status(200).json({
     success: true,
     totalAmount,
     orders,
@@ -84,11 +84,11 @@ exports.updateOrder = catchAsyncErrors(async (req, res, next) => {
   const order = await Order.findById(req.params.id);
 
   if (!order) {
-    return next(new ErrorHander("Order not found with this Id", 404));
+    return next(new ErrorHandler("Order not found with this Id", 404));
   }
 
   if (order.orderStatus === "Delivered") {
-    return next(new ErrorHander("You have already delivered this order", 400));
+    return next(new ErrorHandler("You have already delivered this order", 400));
   }
 
   if (req.body.status === "Shipped") {
@@ -116,7 +116,7 @@ async function updateStock(id, quantity) {
 }
 
 //Delete Order
-exports.deleteOrder = catchAsyncErros(async (req, res, next) => {
+exports.deleteOrder = catchAsyncErrors(async (req, res, next) => {
   const order = await Order.findById(req.params.id);
 
   if (!order) {
