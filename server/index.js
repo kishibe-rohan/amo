@@ -1,20 +1,28 @@
 const express = require("express");
-const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
+const bodyParser = require("body-parser");
+const path = require("path");
 
 const connectDB = require("./dbConnect.js");
 
-dotenv.config();
+if (process.env.NODE_ENV !== "PRODUCTION") {
+  require("dotenv").config({ path: ".env" });
+}
 
-const errorMiddleware = require("./middleware/error");
 //Import routes
 const productRoute = require("./routes/productRoutes.js");
 const userRoute = require("./routes/userRoutes.js");
 const categoryRoute = require("./routes/categoryRoutes.js");
 
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 5000;
+
+//Middlewares
 const app = express();
 app.use(express.json());
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extension: true }));
+app.use(fileUpload());
+const errorMiddleware = require("./middleware/error");
 
 //Set up routes
 app.use("/api/v1", productRoute);
@@ -29,5 +37,4 @@ app.listen(PORT, () => {
   console.log(`Server running on port: ${PORT}`);
 });
 
-app.use(errorMiddleware);
-app.use(cookieParser());
+module.exports = app;

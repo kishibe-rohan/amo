@@ -249,7 +249,7 @@ const UpdateProduct = ({history,match}) => {
               />
          </UpdateProductFormItem>
          <UpdateProductFormFile>
-          <input type="file" name="avatar" accept="image/" onChange={updateProductImages} multiple/>
+          <input type="file" name="avatar" accept="image/*" onChange={updateProductImages} multiple/>
          </UpdateProductFormFile>
          <UpdateProductFormImage>
           {oldImages && oldImages.map((image,index) => (
