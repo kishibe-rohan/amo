@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import Home from "./components/Home/Home";
 import SingleProduct from "./components/Product/SingleProduct";
+import Products from "./components/Product/Products";
 import LoginSignup from "./components/User/LoginSignup";
 import Cart from "./components/Cart/Cart";
 import Shipping from "./components/Cart/Shipping";
@@ -28,6 +29,7 @@ function App() {
     <Router>
       <Route exact path="/" component={Home} />
       <Route exact path="/product/:id" component={SingleProduct} />
+      <Route exact path="/products" component={Products} />
       <Route exact path="/login" component={LoginSignup} />
       <Route exact path="/cart" component={Cart} />
       <Route exact path="/shipping" component={Shipping} />

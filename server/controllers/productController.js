@@ -110,7 +110,7 @@ exports.addProduct = catchAsyncErrors(async (req, res, next) => {
 });
 
 //Update Product
-exports.updateProduct = catchAsyncErrors((req, res, next) => {
+exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
   let product = await Product.findById(req.params.id);
 
   if (!product) {
