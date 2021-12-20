@@ -106,26 +106,26 @@ const Profile = ({history}) => {
             <Loading/>
         ):(
             <>
-            <MetaData title={`${user.name}'s Profile`}/>
+            <MetaData title={`${user?.name}'s Profile`}/>
             <Header/>
             <ProfileContainer>
                 <ProfileHeader>
                     <h1>My Profile</h1>
-                    <img src={user.avatar.url} alt={user.name}/>
+                    <img src={user?.avatar?.url} alt={user?.name}/>
                     <Link to="/me/update">Edit Profile</Link>
                 </ProfileHeader>
                 <ProfileInfo>
                     <ProfileInfoItem>
                         <h4>Full Name</h4>
-                        <p>{user.name}</p>
+                        <p>{user?.name}</p>
                     </ProfileInfoItem>
                     <ProfileInfoItem>
                         <h4>Email</h4>
-                        <p>{user.email}</p>
+                        <p>{user?.email}</p>
                     </ProfileInfoItem>
                     <ProfileInfoItem>
                         <h4>Joined On</h4>
-                        <p>{String(user.createdAt).substr(0,10)}</p>
+                        <p>{String(user?.createdAt)?.substr(0,10)}</p>
                     </ProfileInfoItem>
                     <ProfileFooter>
                         <Link to="/orders">My Orders</Link>

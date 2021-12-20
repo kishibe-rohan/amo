@@ -65,7 +65,7 @@ export const productsReducer = (
         loading: false,
         products: action.payload.products,
         productsCount: action.payload.productsCount,
-        resultPerPage: action.payload.resultPerPage,
+        resultsPerPage: action.payload.resultsPerPage,
         filteredProductsCount: action.payload.filteredProductsCount,
       };
 

@@ -2,17 +2,26 @@ const User = require("../models/userModel");
 const ErrorHandler = require("../utils/errorHandler");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const sendToken = require("../utils/jwtToken");
+const sendEmail = require("../utils/sendEmail");
+const crypto = require("crypto");
+const cloudinary = require("cloudinary");
 
 //Register
 exports.registerUser = catchAsyncErrors(async (req, res, next) => {
+  const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
+    folder: "avatars",
+    width: 150,
+    crop: "scale",
+  });
+
   const { name, email, password } = req.body;
   const user = await User.create({
     name,
     email,
     password,
     avatar: {
-      public_id: "Sample ID",
-      url: "profileAvatar",
+      public_id: myCloud.public_id,
+      url: myCloud.secure_url,
     },
   });
 
@@ -77,6 +86,7 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
     await sendEmail({
       email: user.email,
       subject: `Amo Password Recovery`,
+      message,
     });
 
     res.status(200).json({
@@ -127,15 +137,14 @@ exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
 
 // Update User Password
 exports.updatePassword = catchAsyncErrors(async (req, res, next) => {
-  const user = await User.findById(req.user.id).se;
-  ect("+password");
+  const user = await User.findById(req.user.id).select("+password");
   const isPasswordMatched = await user.comparePassword(req.body.oldPassword);
 
   if (!isPasswordMatched) {
     return next(new ErrorHandler("Old password is incorrect", 400));
   }
 
-  if (req.body.newPassword !== req.body) {
+  if (req.body.newPassword !== req.body.confirmPassword) {
     return next(new ErrorHandler("Passwords do not match", 400));
   }
 
@@ -205,7 +214,7 @@ exports.getAllUsers = catchAsyncErrors(async (req, res, next) => {
 
 //Get particular user
 exports.getUser = catchAsyncErrors(async (req, res, next) => {
-  const user = await User.findByUd(req.params.id);
+  const user = await User.findById(req.params.id);
 
   if (!user) {
     return next(
