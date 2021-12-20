@@ -2,9 +2,15 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const fileUpload = require("express-fileupload");
+const cloudinary = require("cloudinary");
 const path = require("path");
 
 const connectDB = require("./dbConnect.js");
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 if (process.env.NODE_ENV !== "PRODUCTION") {
   require("dotenv").config({ path: ".env" });
@@ -35,7 +41,7 @@ const server = app.listen(PORT, () => {
 //Middlewares
 app.use(express.json());
 app.use(cookieParser());
-app.use(bodyParser.urlencoded({ extension: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(fileUpload());
 const errorMiddleware = require("./middleware/error");
 app.use(errorMiddleware);
