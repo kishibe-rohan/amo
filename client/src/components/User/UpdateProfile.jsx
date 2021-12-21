@@ -177,7 +177,7 @@ const UpdateProfile = ({history}) => {
         ):(
       <>
       <MetaData title={"amo| Update Profile"}/>
-      <Header/>
+      
       <UpdateProfileContainer>
       <UpdateProfileBox>
           <UpdateProfileHeader>
@@ -201,7 +201,7 @@ const UpdateProfile = ({history}) => {
       </UpdateProfileBox>
       </UpdateProfileContainer>
 
-      <Footer/>
+     
       </>
         )
     }

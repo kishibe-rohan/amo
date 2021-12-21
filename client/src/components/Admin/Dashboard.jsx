@@ -111,7 +111,7 @@ const Dashboard = () => {
 
   return (
     <>
-    <Header/>
+  
     <DashboardPage>
     <MetaData title="Dashboard - Admin Panel"/>
     <Sidebar/>
@@ -138,7 +138,7 @@ const Dashboard = () => {
         </DashboardSummary>
     </DashboardContainer>
     </DashboardPage>
-    <Footer/>
+   
     </>
   )
 }

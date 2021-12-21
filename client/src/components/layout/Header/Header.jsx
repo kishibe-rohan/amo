@@ -1,9 +1,13 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import styled from 'styled-components'
+import React,{useState} from 'react'
+import {useAlert} from 'react-alert'
+import { Link,useHistory } from 'react-router-dom'
+import {useDispatch,useSelector} from 'react-redux'
+import {logout} from '../../../actions/userAction'
 
-import { Badge } from '@material-ui/core'
-import {Search,ShoppingCartOutlined} from '@material-ui/icons'
+import { Backdrop } from '@material-ui/core'
+import {SpeedDial,SpeedDialAction} from '@material-ui/lab'
+import {Search,ShoppingCart,ListAlt,ExitToApp,Person,Dashboard, PersonAddDisabled} from '@material-ui/icons'
+import styled from 'styled-components'
 
 import {mobile} from '../../../responsive'
 import logo from '../../../images/logo.png'
@@ -84,7 +88,31 @@ const MenuItem = styled.div`
  }
 `
 
-const Header = () => {
+const Header = ({user}) => {
+  const {cartItems} = useSelector((state) => state.cart);
+
+  const history = useHistory();
+  const alert = useAlert();
+  const dispatch = useDispatch();
+
+  function dashboard() {
+    history.push("/admin/dashboard");
+  }
+
+  function orders() {
+    history.push("/orders");
+  }
+  function account() {
+    history.push("/account");
+  }
+  function cart() {
+    history.push("/cart");
+  }
+  function logoutUser() {
+    dispatch(logout());
+    alert.success("Logged Out Successfully");
+  }
+
   return (
     <Container>
       <Wrapper>
@@ -99,19 +127,26 @@ const Header = () => {
       </Center>
       <Right>
         <MenuItem>
-        <Link to ="/products">
-          Products
-        </Link>
+        <ShoppingCart onClick={cart} style={{color:"white"}}/>
         </MenuItem>
         <MenuItem>
-        <Link to ="/contact">
-          Contact
-        </Link>
+        <Person onClick={account} style={{color:"white"}}/>
         </MenuItem>
         <MenuItem>
-        <Link to ="/about">
-          About
-        </Link>
+        <ListAlt onClick={orders} style={{color:"white"}}/>
+        </MenuItem>
+        <MenuItem>
+        {
+          user && <ExitToApp onClick={logoutUser} style={{color:"white"}}/>
+        }
+        </MenuItem>
+        <MenuItem>
+        {user && <img src={user.avatar.url} style={{height:"28px",width:"28px",borderRadius:"50%"}}/> }
+        </MenuItem>
+        <MenuItem>
+        {
+          user?.role === "admin" && <Dashboard onClick={dashboard} style={{color:"white"}}/>
+        }
         </MenuItem>
       </Right>
       </Wrapper>

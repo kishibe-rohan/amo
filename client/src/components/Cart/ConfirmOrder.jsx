@@ -151,7 +151,7 @@ const ConfirmOrder = ({history}) => {
   return (
     <>
     <MetaData title= "amo|Confirm Order"/>
-    <Header/>
+   
     <CheckoutSteps activeStep={1} />
     <ConfirmOrderPage>
       <div>
@@ -221,7 +221,7 @@ const ConfirmOrder = ({history}) => {
       </OrderSummary>
       </div>
     </ConfirmOrderPage>
-    <Footer/>
+  
 
     </>
   )

@@ -106,7 +106,7 @@ const Products = ({match}) => {
  
   return (
    <>
-   <Header/>
+   
    {
      loading?(<Loading/>):(
        <>
@@ -159,7 +159,7 @@ const Products = ({match}) => {
        </>
      )
    }
-   <Footer/>
+  
    </>
   )
 }

@@ -154,7 +154,7 @@ const Cart = ({history}) => {
    <>
    {cartItems.length === 0 ? (
       <>
-      <Header/>
+     
       <EmptyCart>
           <RemoveShoppingCartIcon/>
           <Typography>No Items In Your Cart</Typography>

@@ -145,7 +145,7 @@ const SingleProduct = () => {
 
     return (
         <Container>
-        <Header/>
+        
         
            {
                loading? (
@@ -182,7 +182,7 @@ const SingleProduct = () => {
                )
            }
        
-        <Footer/>
+       
         </Container>
     )
 }

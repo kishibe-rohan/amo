@@ -173,7 +173,7 @@ const AddProduct = ({history}) => {
   return (
    <>
    <MetaData title="Create Product - Admin"/>
-   <Header/>
+   
    <Container>
      <Sidebar/>
      <AddProductContainer>

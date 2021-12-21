@@ -107,7 +107,7 @@ const Profile = ({history}) => {
         ):(
             <>
             <MetaData title={`${user?.name}'s Profile`}/>
-            <Header/>
+            
             <ProfileContainer>
                 <ProfileHeader>
                     <h1>My Profile</h1>
@@ -133,7 +133,7 @@ const Profile = ({history}) => {
                     </ProfileFooter>
                 </ProfileInfo>
             </ProfileContainer>
-            <Footer/>
+           
             </>
         )}
         </>

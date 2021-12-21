@@ -206,7 +206,7 @@ const UpdateProduct = ({history,match}) => {
   return (
     <>
     <MetaData title={`Update Product - Admin`}/>
-    <Header/>
+   
     
     <Container>
       <Sidebar/>

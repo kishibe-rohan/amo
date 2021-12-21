@@ -36,7 +36,7 @@ const Home = () => {
   return (
     <>
     <MetaData title="amo | Crafted With Love" />
-      <Header/>
+     
       <Slider sliderItems = {featuredProducts} />
       <Categories categories={categories} />
       <h2 className="home-header">Featured Fashion</h2>
@@ -46,7 +46,7 @@ const Home = () => {
          ))}
       </div>
 
-      <Footer/>
+   
       
     </>
   )

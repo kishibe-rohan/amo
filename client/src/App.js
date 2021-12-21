@@ -1,7 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import { useSelector } from "react-redux";
+import axios from "axios";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 import "./App.css";
 
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import Header from "./components/layout/Header/Header";
+import Footer from "./components/layout/Footer/Footer";
 
 import Home from "./components/Home/Home";
 import SingleProduct from "./components/Product/SingleProduct";
@@ -11,6 +17,7 @@ import Cart from "./components/Cart/Cart";
 import Shipping from "./components/Cart/Shipping";
 import OrderSuccess from "./components/Cart/OrderSuccess";
 import ConfirmOrder from "./components/Cart/ConfirmOrder";
+import Payment from "./components/Cart/Payment";
 import Profile from "./components/User/Profile";
 import UpdateProfile from "./components/User/UpdateProfile";
 import UpdatePassword from "./components/User/UpdatePassword";
@@ -24,9 +31,33 @@ import UsersList from "./components/Admin/UsersList";
 import UpdateUser from "./components/Admin/UpdateUser";
 import ProductReviews from "./components/Admin/ProductReviews";
 
+import store from "./store";
+import { loadUser } from "./actions/userAction";
+
 function App() {
+  const { isAuthenticated, user } = useSelector((state) => state.user);
+  const [stripeApiKey, setStripeApiKey] = useState("");
+
+  async function getStripeApiKey() {
+    const { data } = await axios.get("/api/v1/stripeapikey");
+    setStripeApiKey(data.stripeApiKey);
+  }
+
+  useEffect(() => {
+    store.dispatch(loadUser());
+    getStripeApiKey();
+    // console.log(stripeApiKey);
+  }, []);
+
   return (
     <Router>
+      <Header user={isAuthenticated && user} />
+      {stripeApiKey && (
+        <Elements stripe={loadStripe(stripeApiKey)}>
+          <Route exact path="/process/payment" component={Payment} />
+        </Elements>
+      )}
+
       <Route exact path="/" component={Home} />
       <Route exact path="/product/:id" component={SingleProduct} />
       <Route exact path="/products" component={Products} />
@@ -47,6 +78,8 @@ function App() {
       <Route exact path="/admin/users" component={UsersList} />
       <Route exact path="/admin/user/:id" component={UpdateUser} />
       <Route exact path="/admin/reviews" component={ProductReviews} />
+
+      <Footer />
     </Router>
   );
 }

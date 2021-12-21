@@ -118,7 +118,7 @@ const Shipping = ({history}) => {
   return (
    <>
    <MetaData title="amo| Shipping Details"/>
-   <Header/>
+   
    <CheckoutSteps activeStep={0} />
    <ShippingContainer>
        <ShippingBox>
@@ -175,7 +175,7 @@ const Shipping = ({history}) => {
            </ShippingForm>
        </ShippingBox>
    </ShippingContainer>
-   <Footer/>
+  
    </>
   )
 }

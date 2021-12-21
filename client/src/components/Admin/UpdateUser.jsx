@@ -134,7 +134,7 @@ const UpdateUser = ({history,match}) => {
   return (
     <>
     <MetaData title="Update User - Admin"/>
-    <Header/>
+    
     <Container>
       <Sidebar/>
       <UpdateUserContainer>
