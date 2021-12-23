@@ -31,6 +31,7 @@ import UsersList from "./components/Admin/UsersList";
 import UpdateUser from "./components/Admin/UpdateUser";
 import ProductReviews from "./components/Admin/ProductReviews";
 import MyOrders from "./components/Order/MyOrders";
+import OrderDetails from "./components/Order/OrderDetails";
 
 import store from "./store";
 import { loadUser } from "./actions/userAction";
@@ -71,6 +72,7 @@ function App() {
       <Route exact path="/me/update" component={UpdateProfile} />
       <Route exact path="/password/update" component={UpdatePassword} />
       <Route exact path="/orders" component={MyOrders} />
+      <Route exact path="/order/:id" component={OrderDetails} />
       <Route exact path="/admin/dashboard" component={Dashboard} />
       <Route exact path="/admin/products" component={ProductList} />
       <Route exact path="/admin/product" component={AddProduct} />
