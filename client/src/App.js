@@ -21,6 +21,8 @@ import Payment from "./components/Cart/Payment";
 import Profile from "./components/User/Profile";
 import UpdateProfile from "./components/User/UpdateProfile";
 import UpdatePassword from "./components/User/UpdatePassword";
+import ForgotPassword from "./components/User/ForgotPassword";
+import ResetPassword from "./components/User/ResetPassword";
 import Dashboard from "./components/Admin/Dashboard";
 import ProductList from "./components/Admin/ProductList";
 import AddProduct from "./components/Admin/AddProduct";
@@ -71,6 +73,8 @@ function App() {
       <Route exact path="/account" component={Profile} />
       <Route exact path="/me/update" component={UpdateProfile} />
       <Route exact path="/password/update" component={UpdatePassword} />
+      <Route exact path="/password/forgot" component={ForgotPassword} />
+      <Route exact path="/password/reset/:token" component={ResetPassword} />
       <Route exact path="/orders" component={MyOrders} />
       <Route exact path="/order/:id" component={OrderDetails} />
       <Route exact path="/admin/dashboard" component={Dashboard} />
