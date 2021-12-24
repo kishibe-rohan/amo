@@ -30,11 +30,15 @@ const Left = styled.div`
 flex:1;
 display:flex;
 align-items:center;
+>a{
+  text-decoration:none;
+}
 `
 
 const Logo = styled.h1`
 font-weight:bold;
 color:white;
+cursor:pointer;
 ${mobile({ fontSize: "24px" })}
 `
 
@@ -42,7 +46,7 @@ const Center = styled.div`
 flex:1;
 `
 
-const SearchContainer = styled.div`
+const SearchContainer = styled.form`
 border:2px solid lightgray;
 border-radius:25px;
 display:flex;
@@ -90,10 +94,24 @@ const MenuItem = styled.div`
 
 const Header = ({user}) => {
   const {cartItems} = useSelector((state) => state.cart);
+  const [keyword,setKeyword] = useState("");
 
   const history = useHistory();
   const alert = useAlert();
   const dispatch = useDispatch();
+
+  const searchSubmitHandler = (e) => {
+    e.preventDefault();
+    if(keyword.trim())
+    {
+      history.push(`/products/${keyword}`)
+    }else
+    {
+      history.push('/products')
+    }
+
+
+  }
 
   function dashboard() {
     history.push("/admin/dashboard");
@@ -102,12 +120,15 @@ const Header = ({user}) => {
   function orders() {
     history.push("/orders");
   }
+
   function account() {
     history.push("/account");
   }
+
   function cart() {
     history.push("/cart");
   }
+
   function logoutUser() {
     dispatch(logout());
     alert.success("Logged Out Successfully");
@@ -117,11 +138,13 @@ const Header = ({user}) => {
     <Container>
       <Wrapper>
       <Left>
+        <Link to="/">
         <Logo>AMO</Logo>
+        </Link>
       </Left>
       <Center>
-      <SearchContainer>
-        <Input placeholder = "Search for a product.." />
+      <SearchContainer onSubmit={searchSubmitHandler}>
+        <Input type="text" placeholder = "Search for a product.." onChange={(e) => setKeyword(e.target.value)}/>
         <Search style={{color:"white",fontSize:16}} />
       </SearchContainer>
       </Center>

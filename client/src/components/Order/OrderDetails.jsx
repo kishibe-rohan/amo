@@ -102,8 +102,9 @@ const OrderDetails = ({match}) => {
     {
         loading?(
         <Loading/>
-        ):(
+        ): order?(
             <>
+            
             <MetaData title="Order Details"/>
             <OrderDetailsPage>
                 <OrderDetailsContainer>
@@ -114,32 +115,32 @@ const OrderDetails = ({match}) => {
                     <OrderDetailsContainerBox>
                         <OrderDetailsItem>
                             <p>Name:</p>
-                            <span>{order.user && order.user.name}</span>
+                            <span>{order?.user && order.user.name}</span>
                         </OrderDetailsItem>
                         <OrderDetailsItem>
                         <p>Phone:</p>
                         <span>
-                            {order.shippingInfo && order.shippingInfo.phoneNo}
+                            {order?.shippingInfo && order.shippingInfo.phoneNo}
                         </span>
                         </OrderDetailsItem>
                         <OrderDetailsItem>
                             <p>Address:</p>
-                            <span>  {order.shippingInfo &&
-                      `${order.shippingInfo.address}, ${order.shippingInfo.city}, ${order.shippingInfo.state}, ${order.shippingInfo.pinCode}, ${order.shippingInfo.country}`} </span>
+                            <span>  {order?.shippingInfo &&
+                      `${order?.shippingInfo.address}, ${order?.shippingInfo.city}, ${order?.shippingInfo.state}, ${order.shippingInfo.pinCode}, ${order?.shippingInfo.country}`} </span>
                         </OrderDetailsItem>
                     </OrderDetailsContainerBox>
                     <Typography>Payment</Typography>
                     <OrderDetailsContainerBox>
                         <OrderDetailsItem>
                             <p>Order Status:</p>
-                            <span>{order.paymentInfo &&
-                    order.paymentInfo.status === "succeeded"
+                            <span>{order?.paymentInfo &&
+                    order?.paymentInfo.status === "succeeded"
                       ? "PAID"
                       : "NOT PAID"}</span>
                         </OrderDetailsItem>
                         <OrderDetailsItem>
                         <p>Amount:</p>
-                        <span>{order.totalPrice && order.totalPrice}</span>
+                        <span>{order?.totalPrice && order?.totalPrice}</span>
                         </OrderDetailsItem>
                     </OrderDetailsContainerBox>
                 </OrderDetailsContainer>
@@ -148,7 +149,7 @@ const OrderDetails = ({match}) => {
                     <Typography>Order Items:</Typography>
                     <OrderDetailsCartItemsContainer>
                         {
-                            order.orderItems && order.orderItems.map((item) => (
+                            order?.orderItems && order?.orderItems.map((item) => (
                                 <OrderItem key={item.product}>
                                     <img src={item.image} alt="Product"/>
                                     <Link to={`/product/${item.product}`}>
@@ -165,6 +166,11 @@ const OrderDetails = ({match}) => {
                 </OrderDetailsCartItems>
             </OrderDetailsPage>
             </>
+
+        ):(
+           <>
+          
+           </> 
         )
     }
     </>

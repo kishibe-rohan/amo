@@ -65,18 +65,19 @@ function App() {
       <Route exact path="/" component={Home} />
       <Route exact path="/product/:id" component={SingleProduct} />
       <Route exact path="/products" component={Products} />
+      <Route path="/products/:keyword" component={Products} />
       <Route exact path="/login" component={LoginSignup} />
       <Route exact path="/cart" component={Cart} />
       <Route exact path="/shipping" component={Shipping} />
       <Route exact path="/success" component={OrderSuccess} />
       <Route exact path="/order/confirm" component={ConfirmOrder} />
+      <Route exact path="/order/:id" component={OrderDetails} />
       <Route exact path="/account" component={Profile} />
       <Route exact path="/me/update" component={UpdateProfile} />
       <Route exact path="/password/update" component={UpdatePassword} />
       <Route exact path="/password/forgot" component={ForgotPassword} />
       <Route exact path="/password/reset/:token" component={ResetPassword} />
       <Route exact path="/orders" component={MyOrders} />
-      <Route exact path="/order/:id" component={OrderDetails} />
       <Route exact path="/admin/dashboard" component={Dashboard} />
       <Route exact path="/admin/products" component={ProductList} />
       <Route exact path="/admin/product" component={AddProduct} />

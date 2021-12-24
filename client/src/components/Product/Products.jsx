@@ -102,6 +102,8 @@ const Products = ({match}) => {
 
     dispatch(getCategories());
     dispatch(getProducts(keyword,currentPage,price,category,ratings))
+
+    console.log(keyword);
   },[dispatch, keyword, currentPage, price, category, ratings, alert, error])
  
   return (

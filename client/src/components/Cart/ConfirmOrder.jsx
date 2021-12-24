@@ -126,6 +126,7 @@ font: 400 1vmax;
 const ConfirmOrder = ({history}) => {
 
   const {shippingInfo,cartItems} = useSelector((state) => state.cart)
+  const {user} = useSelector((state) => state.user)
 
   const subtotal = cartItems.reduce((acc,item) => acc + item.quantity*item.price,0)
   const shippingCharges = subtotal > 1000?0:200;
@@ -160,7 +161,7 @@ const ConfirmOrder = ({history}) => {
           <ConfirmShippingAreaBox>
             <ConfirmShippingAreaBoxItem>
               <p>Name:</p>
-              <span>Adam Cole</span>
+              <span>{user.name}</span>
             </ConfirmShippingAreaBoxItem>
             <ConfirmShippingAreaBoxItem>
               <p>Phone:</p>

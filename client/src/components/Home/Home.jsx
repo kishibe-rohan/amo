@@ -8,6 +8,7 @@ import Slider from '../layout/Slider'
 import Footer from '../layout/Footer/Footer';
 import "./Home.css";
 import MetaData from '../layout/MetaData';
+import Loading from '../layout/Loading'
 
 import { getProducts,getFeaturedProducts } from '../../actions/productAction'
 import {getCategories} from '../../actions/categoryAction'
@@ -35,20 +36,28 @@ const Home = () => {
 
   return (
     <>
-    <MetaData title="amo | Crafted With Love" />
-     
-      <Slider sliderItems = {featuredProducts} />
-      <Categories categories={categories} />
-      <h2 className="home-header">Featured Fashion</h2>
-      <div className="container" id="container">
-         {products && products.map(product => (
-             <ProductCard product={product}/>
-         ))}
-      </div>
-
-   
-      
-    </>
+    {
+      loading? (
+        <Loading/>
+      ):(
+        <>
+        <MetaData title="amo | Crafted With Love" />
+         
+          <Slider sliderItems = {featuredProducts} />
+          <Categories categories={categories} />
+          <h2 className="home-header">Featured Fashion</h2>
+          <div className="container" id="container">
+             {products && products.map(product => (
+                 <ProductCard product={product}/>
+             ))}
+          </div>
+    
+       
+          
+        </>
+      )
+    }
+    </> 
   )
 }
 
