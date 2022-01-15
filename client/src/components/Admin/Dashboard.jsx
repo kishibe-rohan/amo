@@ -4,13 +4,12 @@ import {Link} from 'react-router-dom'
 import { Typography } from '@material-ui/core'
 import styled from 'styled-components'
 
+
 import { getAdminProducts } from '../../actions/productAction'
 import { getAllUsers } from '../../actions/userAction'
 import {getAllOrders} from '../../actions/orderAction'
 
 import MetaData from '../layout/MetaData'
-import Header from '../layout/Header/Header'
-import Footer from '../layout/Footer/Footer'
 import Sidebar from './Sidebar'
 
 const DashboardPage = styled.div` 
@@ -82,7 +81,6 @@ flex-direction: column;
 }
 `
 
-
 const Dashboard = () => {
     const dispatch = useDispatch();
 
@@ -108,6 +106,14 @@ const Dashboard = () => {
     dispatch(getAllUsers());
     },[dispatch]);
 
+    let total = 0;
+    orders &&
+      orders.forEach((item) => {
+        total += item.totalPrice;
+      });
+
+ 
+    
 
   return (
     <>
@@ -135,7 +141,8 @@ const Dashboard = () => {
                     <p>{users && users.length}</p>
                 </Link>
             </DashboardSummaryBox>
-        </DashboardSummary>
+           
+        </DashboardSummary>  
     </DashboardContainer>
     </DashboardPage>
    

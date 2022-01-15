@@ -127,7 +127,7 @@ const rows = [];
 products && products.forEach((item) => {
   rows.push({
         id: item._id,
-        stock: item.Stock,
+        stock: item.stock,
         price: item.price,
         name: item.name,
   })
@@ -136,7 +136,6 @@ products && products.forEach((item) => {
   return (
     <>
      <MetaData title={`All Products -Admin`}/>
-     <Header/>
      <Container>
        <Sidebar/>
        <ProductListContainer>
@@ -144,7 +143,6 @@ products && products.forEach((item) => {
          <DataGrid rows={rows} columns={columns} pageSize={10} disableSelectionOnClick autoHeight/>
        </ProductListContainer>
      </Container>
-     <Footer/>
     </>
   )
 }

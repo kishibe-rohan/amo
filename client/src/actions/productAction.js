@@ -70,12 +70,12 @@ export const getProductsByCategory = (category) => async (dispatch) => {
     });
 
     const { data } = await axios.get(
-      `/api/v1/catproducts/?category=${category}`
+      `/api/v1/catproducts?category=${category}`
     );
 
     dispatch({
       type: GET_PRODUCTS_BY_CATEGORY_SUCCESS,
-      payload: data.categories,
+      payload: data.products,
     });
   } catch (error) {
     dispatch({
@@ -160,7 +160,7 @@ export const createProduct = (productData) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      "api/v1/admin/product/new",
+      "/api/v1/admin/product/new",
       productData,
       config
     );

@@ -51,6 +51,7 @@ export const productsReducer = (
       return {
         loading: true,
         products: [],
+        featuredProducts: [],
       };
 
     case FEAT_PRODUCT_REQUEST:
@@ -71,6 +72,7 @@ export const productsReducer = (
 
     case ADMIN_PRODUCT_SUCCESS:
       return {
+        ...state,
         loading: false,
         products: action.payload,
       };

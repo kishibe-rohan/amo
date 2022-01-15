@@ -50,10 +50,7 @@ const Home = () => {
              {products && products.map(product => (
                  <ProductCard product={product}/>
              ))}
-          </div>
-    
-       
-          
+          </div>      
         </>
       )
     }

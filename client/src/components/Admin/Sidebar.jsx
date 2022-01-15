@@ -24,9 +24,9 @@ padding: 4rem 0;
   a {
     text-decoration: none;
     color: rgba(0, 0, 0, 0.493);
-    font: 200 1rem "Roboto";
     padding: 2rem;
     transition: all 0.5s;
+    
   }
 
   a:hover {
@@ -61,7 +61,7 @@ const Sidebar = () => {
           <Dashboard /> Dashboard
         </p>
       </Link>
-      <Link>
+      <a>
         <TreeView
           defaultCollapseIcon={<ExpandMore/>}
           defaultExpandIcon={<ImportExport/>}
@@ -76,7 +76,7 @@ const Sidebar = () => {
             </Link>
           </TreeItem>
         </TreeView>
-      </Link>
+       </a>
       <Link to="/admin/orders">
         <p>
           <ListAlt/>

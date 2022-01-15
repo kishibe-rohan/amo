@@ -4,15 +4,14 @@ export default makeStyles((theme) => ({
   container: {
     width: "100vw",
     height: "100vh",
-    background: `linear-gradient(rgba(255,255,255,0.5),rgba(255,255,255,0.5)),url(${"https://images.pexels.com/photos/833052/pexels-photo-833052.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"}center)`,
-    backgroundSize: "cover",
+    backgroundColor: "white",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
   },
 
   wrapper: {
-    width: "50%",
+    width: "75%",
 
     backgroundColor: "white",
   },

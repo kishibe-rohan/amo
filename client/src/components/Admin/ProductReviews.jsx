@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react'
+import React,{useEffect,useState} from 'react'
 import {useSelector,useDispatch} from 'react-redux'
 import {DataGrid} from '@material-ui/data-grid'
 import {
@@ -11,7 +11,7 @@ import {Link} from 'react-router-dom'
 import {useAlert} from 'react-alert'
 
 import {Button} from '@material-ui/core'
-import {Edit,Delete} from '@material-ui/icons'
+import {Delete,Star} from '@material-ui/icons'
 import styled from 'styled-components'
 
 import MetaData from '../layout/MetaData'
@@ -43,15 +43,49 @@ color:rgba(0,0,0,0.637);
 transition: all 0.5s;
 margin: 2rem;
 text-align: center;
+border-bottom:1px solid tomato;
+`
+const ReviewForm = styled.form`
+width: 20rem;
+display: flex;
+flex-direction: column;
+align-items: center;
+margin: auto;
+padding: 3vmax;
+background-color: white;
 `
 
+const ReviewFormItem = styled.div`
+display: flex;
+width: 100%;
+align-items: center;
+margin: 2rem;
+
+>input{
+  padding:1vmax 4vmax;
+  padding-right:1vmax;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.267);
+  border-radius: 4px;
+  font: 300 0.9vmax;
+  outline: none;
+}
+
+>svg{
+  position:absolute;
+  transform:translateX(1vmax); 
+  font-size:1.6vmax; 
+  color:rgba(0,0,0,0.623); 
+}
+`
 
 
 const ProductReviews = ({history}) => {
   const dispatch = useDispatch();
   const alert = useAlert();
 
-  const {error,reviews} = useSelector((state) => state.productReviews)
+  const {error,reviews,loading} = useSelector((state) => state.productReviews)
   const {error:deleteError,isDeleted} = useSelector((state) => state.review)
 
 
@@ -59,7 +93,19 @@ const ProductReviews = ({history}) => {
     dispatch(deleteReviews(id));
   }
 
+  const [productId,setProductId] = useState("");
+
+  const productReviewsHandler = (e) => {
+    e.preventDefault();
+    dispatch(getAllReviews(productId))
+  }
+
   useEffect(() => {
+
+    if (productId.length === 24) {
+      dispatch(getAllReviews(productId));
+    }
+
     if(error)
     {
       alert.error(error);
@@ -77,8 +123,6 @@ const ProductReviews = ({history}) => {
       history.push("/admin/reviews");
       dispatch({ type: DELETE_REVIEW_RESET });
     }
-
-    dispatch(getAllReviews());
 
 
   },[dispatch,alert,error,deleteError,history,isDeleted])
@@ -140,7 +184,14 @@ const ProductReviews = ({history}) => {
     <Container>
        <Sidebar/>
        <ReviewListContainer>
+         <ReviewForm onSubmit={productReviewsHandler}>
          <ReviewListHeading>PRODUCT REVIEWS</ReviewListHeading>
+            <ReviewFormItem>
+              <Star/>
+              <input type="text" placeholder="Enter Product ID" required value={productId}  onChange={(e) => setProductId(e.target.value)}/>
+            </ReviewFormItem>
+            <Button type="submit" disabled={loading? true:false || productId === ""? true:false}/> 
+         </ReviewForm>
          <DataGrid rows={rows} columns={columns} pageSize={10} disableSelectionOnClick autoHeight/>
        </ReviewListContainer>
      </Container>
