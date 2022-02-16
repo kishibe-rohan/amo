@@ -2,6 +2,7 @@ import React,{useEffect,useState,useRef} from 'react'
 import { useDispatch,useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Loading from '../layout/Loading'
+import MetaData from '../layout/MetaData'
 
 import useStyles from './styles'
 import {Box,Typography,TextField,Button} from '@material-ui/core'
@@ -91,6 +92,8 @@ const LoginSignup = ({history,location}) => {
 
    
   return (
+    <>
+    <MetaData title={"amo|Login"}/>
     <div className={classes.container}>
       <Box style={{display:"flex"}} className={classes.wrapper}>
           <Box className={classes.image}>
@@ -124,6 +127,7 @@ const LoginSignup = ({history,location}) => {
           }
       </Box>
     </div>
+    </>
   )
 }
 

@@ -75,8 +75,8 @@ padding:0.5vmax;
 width:1vmax;
 text-align:center;
 outline:none;
-font:400 0.8vmax;
-color: rgba(0, 0, 0, 0.74);;
+font:400 1vmax;
+color: black;
 `
 
 const CartSubtotal = styled.div` 

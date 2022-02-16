@@ -115,8 +115,8 @@ const UpdateProfile = ({history}) => {
 
     const [name,setName] = useState("");
     const [email, setEmail] = useState("");
-    const [avatar, setAvatar] = useState("/Profile.png");
-    const [avatarPreview, setAvatarPreview] = useState("/Profile.png");
+    const [avatar, setAvatar] = useState("Profile.png");
+    const [avatarPreview, setAvatarPreview] = useState("Profile.png");
 
     const updateProfileSubmit = (e) => {
         e.preventDefault();
@@ -167,7 +167,7 @@ const UpdateProfile = ({history}) => {
                 type: UPDATE_PROFILE_RESET
             })
         }
-    },[dispatch,error,alert,history,user,isUpdated,])
+    },[dispatch,error,alert,history,user,isUpdated])
 
   return (
     <>

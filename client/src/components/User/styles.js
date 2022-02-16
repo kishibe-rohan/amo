@@ -12,7 +12,6 @@ export default makeStyles((theme) => ({
 
   wrapper: {
     width: "75%",
-
     backgroundColor: "white",
   },
 
