@@ -63,7 +63,8 @@ Welcome to Amo! E-Commerce project created using **React** for the UI,**Redux** 
 
 ![Profile](https://i.ibb.co/f41JVj1/274103845-1635490386802424-1553241563640769479-n.jpg)
 
-<p>Admin Login Credentials</p>
+<h3>Admin Login Credentials</h3>
+
 - Email: liolio@gmail.com
 - PW: liorush123
 
